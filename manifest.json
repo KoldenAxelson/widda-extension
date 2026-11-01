@@ -1,9 +1,9 @@
 {
   "manifest_version": 3,
   "name": "Widda",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAlFvPkAAjQ92WQJVa3527z00mvZS1P26O2CKAEINBIL/4rk8WfDZtwlKY21gwJdFJRQ0jPdmKULCXNleQ7InYHPz1v3CLYNpMW0mDyExmbS0UwbZvSwi6yf7sQZeZhc9vGq6THF127brdH1csMXuH3rUEwmoQMwEE6DNyA22fW06vjYUKc/uzqtHBAPSXjQ6BmjOJaTvx2TPKtrRRiJPKd4zQwT6n8otaWLnxE6r486/nq8SzzjYHzeVyW2otHPbxk5PShl4K2RUSHJtmlJmPA3iCMS0QjuyVdBRsyNasuyhqpqury4b8+3bcvKzbD6d6UqaiG60FUxcU5HcGQozkzQIDAQAB",
-  "description": "Support your favorite YouTube creators automatically — their promo codes and affiliate links, applied at checkout.",
+  "description": "Offers the promo codes of YouTube creators you subscribe to at checkout. You click Apply; the creator gets credit.",
   "permissions": [
     "storage",
     "identity",
