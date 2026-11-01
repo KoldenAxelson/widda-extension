@@ -1,0 +1,8 @@
+dist/
+dev-build/
+build/
+preview/preview.js
+preview/preview.js.map
+*.zip
+.package/
+.DS_Store

@@ -1,0 +1,216 @@
+/* Widda popup styles. Shared by popup.html and the preview harness so the
+   visual design has a single source of truth.
+
+   Language: one neutral scale, one near-black accent, hairline borders, 6–8px
+   radii. Rank sits on the left of each row and the grab handle on the right,
+   the convention in reorder lists across mobile apps. */
+
+:root {
+  --bg: #ffffff;
+  --fg: #18181b;
+  --muted: #71717a;
+  --faint: #a1a1aa;
+  --line: #e4e4e7;
+  --line-strong: #d4d4d8;
+  --surface: #fafafa;
+  --accent: #18181b;
+  --accent-hover: #27272a;
+}
+
+* { box-sizing: border-box; }
+
+.widda-popup {
+  font-family: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-feature-settings: "tnum";
+  width: 320px;
+  margin: 0;
+  padding: 0;
+  color: var(--fg);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Header ------------------------------------------------------------------ */
+.widda-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 14px 10px;
+  border-bottom: 1px solid var(--line);
+}
+.widda-logo { width: 20px; height: 20px; display: block; }
+.widda-head h1 { font-size: 13px; margin: 0; font-weight: 600; letter-spacing: -0.01em; }
+
+/* Session line (set by popup.ts) */
+#status {
+  margin-left: auto;
+  font-size: 11px;
+  color: var(--muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 55%;
+}
+
+/* Body --------------------------------------------------------------------- */
+.widda-body { padding: 12px 14px 14px; }
+
+.section-label {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--muted);
+  margin: 0 0 6px;
+}
+
+/* Ranked list: grouped container, hairline dividers */
+ul#creators {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 13px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  overflow: hidden;
+  background: #fff;
+}
+ul#creators:empty { display: none; }
+
+li.creator {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 38px;
+  padding: 0 8px 0 12px;
+  border-top: 1px solid var(--line);
+  cursor: grab;
+  user-select: none;
+  transition: background .1s;
+}
+li.creator:first-child { border-top: 0; }
+li.creator:hover { background: var(--surface); }
+li.creator:active { cursor: grabbing; }
+li.creator.dragging { opacity: .45; background: var(--surface); }
+
+li.creator .rank {
+  width: 16px;
+  text-align: right;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--faint);
+  font-variant-numeric: tabular-nums;
+}
+li.creator:first-child .rank { color: var(--fg); }
+
+li.creator .name {
+  flex: 1; min-width: 0;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  font-weight: 500;
+}
+
+/* Grab handle (right side) */
+li.creator::after {
+  content: "";
+  width: 16px; height: 16px;
+  flex: none;
+  opacity: .7;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16' fill='%23a1a1aa'%3E%3Ccircle cx='6' cy='4' r='1.3'/%3E%3Ccircle cx='10' cy='4' r='1.3'/%3E%3Ccircle cx='6' cy='8' r='1.3'/%3E%3Ccircle cx='10' cy='8' r='1.3'/%3E%3Ccircle cx='6' cy='12' r='1.3'/%3E%3Ccircle cx='10' cy='12' r='1.3'/%3E%3C/svg%3E");
+}
+li.creator:hover::after { opacity: 1; }
+
+/* Empty state */
+.empty {
+  padding: 22px 14px;
+  border: 1px dashed var(--line-strong);
+  border-radius: 8px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.5;
+  text-align: center;
+}
+
+/* Actions ------------------------------------------------------------------ */
+.actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+.actions button { flex: 1; }
+#signin { flex-basis: 100%; }
+
+button {
+  font: 500 12.5px "Inter", ui-sans-serif, system-ui, sans-serif;
+  height: 32px;
+  padding: 0 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  border-radius: 6px;
+  border: 1px solid var(--line);
+  background: #fff;
+  color: var(--fg);
+  cursor: pointer;
+  transition: background .1s, border-color .1s;
+}
+button:hover { background: var(--surface); border-color: var(--line-strong); }
+button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+button:disabled { opacity: .5; cursor: default; }
+button.primary { background: var(--accent); color: #fff; border-color: var(--accent); }
+button.primary:hover { background: var(--accent-hover); border-color: var(--accent-hover); }
+button svg { width: 14px; height: 14px; flex: none; }
+
+.hint {
+  font-size: 11px;
+  line-height: 1.45;
+  color: var(--faint);
+  margin: 10px 0 0;
+}
+
+/* Dark mode follows the system setting; last so it wins the cascade. */
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --bg: #0e0e11;
+    --fg: #f4f4f5;
+    --muted: #9d9da6;
+    --faint: #71717a;
+    --line: #2a2a31;
+    --line-strong: #3a3a43;
+    --surface: #151518;
+    --accent: #f4f4f5;
+    --accent-hover: #e4e4e7;
+  }
+  button.primary { color: #0e0e11; }
+  ul#creators, button { background: var(--bg); }
+}
+
+/* Notices (set by popup.ts): operator notice from GET /status, and sync problems
+   such as YouTube quota limits. Informational, not alarming. */
+.notice {
+  margin: 0 0 10px;
+  padding: 8px 10px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--surface);
+  font-size: 12px;
+  line-height: 1.45;
+  color: var(--fg);
+}
+.notice[hidden] { display: none; }
+
+/* Footer: privacy link + two-step "Delete my data" (popup.ts). */
+.footer-links {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px 0 0;
+  font-size: 11px;
+}
+.footer-links a { color: var(--muted); text-decoration: underline; text-underline-offset: 2px; }
+.link-danger {
+  all: unset;
+  cursor: pointer;
+  color: var(--muted);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.link-danger:hover, .link-danger[data-armed] { color: #dc2626; }
+.link-danger:focus-visible { outline: 2px solid var(--fg); outline-offset: 2px; border-radius: 2px; }

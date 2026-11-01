@@ -1,0 +1,51 @@
+{
+  "manifest_version": 3,
+  "name": "Widda (dev)",
+  "version": "0.1.0",
+  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAlFvPkAAjQ92WQJVa3527z00mvZS1P26O2CKAEINBIL/4rk8WfDZtwlKY21gwJdFJRQ0jPdmKULCXNleQ7InYHPz1v3CLYNpMW0mDyExmbS0UwbZvSwi6yf7sQZeZhc9vGq6THF127brdH1csMXuH3rUEwmoQMwEE6DNyA22fW06vjYUKc/uzqtHBAPSXjQ6BmjOJaTvx2TPKtrRRiJPKd4zQwT6n8otaWLnxE6r486/nq8SzzjYHzeVyW2otHPbxk5PShl4K2RUSHJtmlJmPA3iCMS0QjuyVdBRsyNasuyhqpqury4b8+3bcvKzbD6d6UqaiG60FUxcU5HcGQozkzQIDAQAB",
+  "description": "DEV BUILD — checkout-simulator hooks + session-token bypass. Never publish this build.",
+  "permissions": [
+    "storage",
+    "identity",
+    "cookies",
+    "alarms"
+  ],
+  "host_permissions": [
+    "https://*.squarespace.com/*",
+    "https://*.nordvpn.com/*",
+    "https://*.audible.com/*",
+    "https://admin.widda.club/*",
+    "https://api.widda.club/*"
+  ],
+  "background": {
+    "service_worker": "dist/background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://*.squarespace.com/*",
+        "https://*.nordvpn.com/*",
+        "https://*.audible.com/*",
+        "https://admin.widda.club/sim/*"
+      ],
+      "js": [
+        "dist/content.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Widda (dev)",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}

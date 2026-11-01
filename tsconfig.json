@@ -1,0 +1,16 @@
+{
+  // Optional: editor IntelliSense only. The build does NOT use tsc — it uses the
+  // standalone esbuild binary (see ../Makefile `build:ext`), which transpiles
+  // without type-checking. For chrome.* IntelliSense you may install type defs
+  // locally (e.g. into a personal global), but nothing npm is committed here.
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "ES2022",
+    "moduleResolution": "bundler",
+    "lib": ["ES2022", "DOM"],
+    "strict": true,
+    "noEmit": true,
+    "allowImportingTsExtensions": true
+  },
+  "include": ["src/**/*"]
+}
