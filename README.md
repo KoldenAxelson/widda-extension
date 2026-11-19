@@ -1,5 +1,7 @@
 # Widda Extension (Chrome, Manifest V3)
 
+**Install:** [Widda on the Chrome Web Store](https://chromewebstore.google.com/detail/widda/dgmbmodachccaoafinpkdegefaahejgm) · [widda.club](https://widda.club/)
+
 **License: MIT** (see `LICENSE`). The extension is open-source — its build is the
 deterministic esbuild bundle (`make build:ext`), so anyone can rebuild from source and
 verify the published artifact. This transparency is deliberate (shopping extensions have a trust problem):
